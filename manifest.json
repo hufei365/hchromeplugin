@@ -1,0 +1,41 @@
+{
+	// 必须
+	"manifest_version": 2,
+	"name": "H",
+	"version": "1.0.0",
+
+	// 推荐
+	"description": "just for personal tools",
+	"icons": {
+		"16": "img/icon-16.png",	// 扩展程序页面上的图标
+		"32": "img/icon-32.png",	// Windows计算机通常需要此大小。提供此选项可防止尺寸失真缩小48x48选项。
+		"48": "img/icon-48.png",	// 显示在扩展程序管理页面上
+		"128": "img/icon-128.png"	// 在安装和Chrome Webstore中显示
+	},
+
+	// 可选
+	"background": {
+		"scripts": ["background.js"],
+		// 推荐
+		"persistent": false
+	},
+	"browser_action": {
+		"default_icon": "img/icon-32.png",	
+		// 特定于工具栏的图标，至少建议使用16x16和32x32尺寸，应为方形，
+		// 不然会变形
+		"default_title": "just for H"
+	},
+	"content_scripts": [ {
+		"js": [ "md5.js", "inject.js"  ],
+		"matches": [  "https://*/*", "http://*/*" ],
+		"run_at": "document_end"
+	 } ],
+	"permissions": [
+		"https://fanyi-api.baidu.com/*",
+		"contextMenus",
+		"tabs",
+		"http://*/*",
+		"https://*/*"
+	],
+	"web_accessible_resources": [ "dist/*", "dist/**/*" ]
+}
